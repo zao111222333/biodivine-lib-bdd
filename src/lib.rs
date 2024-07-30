@@ -108,7 +108,7 @@ const NOT_IN_VAR_NAME: [char; 11] = ['!', '&', '|', '^', '=', '<', '>', '(', ')'
 /// An array-based encoding of the binary decision diagram implementing basic logical operations.
 ///
 /// To create `Bdd`s for atomic formulas, use a `BddVariableSet`.
-#[derive(Clone, Debug, Eq, Hash, PartialEq)]
+#[derive(Clone, Debug, Eq, Hash, PartialEq, Ord, PartialOrd)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct Bdd(Vec<BddNode>);
 
@@ -236,7 +236,7 @@ pub struct BddPointer(u32);
 /// pointers. Instead of variable id, we use the number of variables in the original
 /// `BddVariableSet`. This is consistent with the fact that we first condition on smallest
 /// variable ids. It can be also used for consistency checks inside the library.
-#[derive(Clone, Copy, Debug, Eq, Hash, PartialEq)]
+#[derive(Clone, Copy, Debug, Eq, Hash, PartialEq, Ord, PartialOrd)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct BddNode {
     pub var: BddVariable,
